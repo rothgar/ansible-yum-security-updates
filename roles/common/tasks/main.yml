@@ -1,0 +1,11 @@
+---
+- hosts: mgt2.apu.edu
+  user: jlg
+  sudo: yes
+  tasks:
+  - name: install yum security plugin on RHEL 5.X
+    when: ansible_os_family == "RedHat" and ansible_lsb.major_release | int <6
+    yum: pkg=yum-security state=latest
+  - name: install yum security plugin on RHEL 6.X
+    when: ansible_os_family == "RedHat" and ansible_lsb.major_release | int >=6
+    yum: pkg=yum-plugin-security state=latest
