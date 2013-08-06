@@ -1,0 +1,7 @@
+---
+- name: Configure automatic yum security updates
+  hosts: all
+  sudo: yes
+
+  roles:
+    - common
